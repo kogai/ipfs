@@ -16,9 +16,8 @@ use tokio_core::reactor::Core;
 use tokio_io::io::write_all;
 
 fn main() {
-    let addr = "/ip6/::1/tcp/4001/ipfs/QmTwhzbBFY2gXk3MDCCp6kj26ewNyJxc7GnvHbuxXQf4n4"
-        .parse::<Multiaddr>()
-        .unwrap();
+    // let addr = "/ip6/::1/tcp/4001/ipfs/QmTwhzbBFY2gXk3MDCCp6kj26ewNyJxc7GnvHbuxXQf4n4"
+    let addr = "/ip4/127.0.0.1/tcp/4001".parse::<Multiaddr>().unwrap();
     println!("Attempt to connect {}", &addr);
 
     let mut core = Core::new().unwrap();
@@ -30,11 +29,14 @@ fn main() {
     });
 
     let future = match transport.dial(addr) {
-        Ok(conn) => conn.and_then(|(conn, _)| write_all(conn, "hello world")),
+        Ok(conn) => conn.and_then(|(conn, _addr)| write_all(conn, "Hello world!")),
         Err((_upgraded_node, addr)) => {
             panic!("Unable to dial node {:?}", addr);
         }
     };
 
-    core.run(future).unwrap();
+    match core.run(future) {
+        Ok((_conn, response)) => println!("Success! [{}]", response),
+        Err(e) => panic!("Something wrong,\n{:?}", e),
+    };
 }
