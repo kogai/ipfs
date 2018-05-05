@@ -1,5 +1,6 @@
 /target
 **/*.rs.bk
-rust-ipfs/
-fixture/*.pk8
-fixture/*.der
+/rust-ipfs
+/go
+/fixture/*.pk8
+/fixture/*.der
