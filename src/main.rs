@@ -17,7 +17,10 @@ use tokio_io::io::write_all;
 
 fn main() {
     // let addr = "/ip6/::1/tcp/4001/ipfs/QmTwhzbBFY2gXk3MDCCp6kj26ewNyJxc7GnvHbuxXQf4n4"
-    let addr = "/ip4/127.0.0.1/tcp/4001".parse::<Multiaddr>().unwrap();
+    let addr = "/ipfs/QmQ3WBvK3CbjsrfTduFxvrudjDyP59vkp1qa1NpuDugkb8"
+        .parse::<Multiaddr>()
+        .unwrap();
+    // let addr = "/ip4/127.0.0.1/tcp/4001".parse::<Multiaddr>().unwrap();
     println!("Attempt to connect {}", &addr);
 
     let mut core = Core::new().unwrap();
