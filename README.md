@@ -16,7 +16,7 @@ $ cargo run # -> Success!
 
 # Build and run go-ipfs from source code
 ARGS=version make go/run
-ARGS="cat /ipfs/QmQ3WBvK3CbjsrfTduFxvrudjDyP59vkp1qa1NpuDugkb8 --debug" make go/run
+ARGS="cat /ipfs/QmWm6xANVhca6YNY97bF7TqVtFgEsT2Kperzgwhmvpi88d --debug" make go/run
 ```
 
 * cat() -> `$GOPATH/src/github.com/ipfs/go-ipfs/core/commands/cat.go:136`

@@ -202,6 +202,7 @@ dependencies = [
 name = "ipfs"
 version = "0.1.0"
 dependencies = [
+ "cid 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "futures 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)",
  "libp2p-secio 0.1.0",
  "libp2p-swarm 0.1.0",

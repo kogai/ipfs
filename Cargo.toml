@@ -9,6 +9,7 @@ authors = ["Shinichi Kogai <kogai0121@gmail.com>"]
 tokio-core = "0.1.6"
 futures = "0.1"
 tokio-io = "0.1.0"
+cid = "*"
 ring = "*"
 libp2p-swarm = { path = "./rust-libp2p/swarm" }
 libp2p-secio = { path = "./rust-libp2p/secio" }
