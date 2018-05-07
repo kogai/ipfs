@@ -1,3 +1,6 @@
 [submodule "rust-libp2p"]
 	path = rust-libp2p
 	url = git@github.com:libp2p/rust-libp2p.git
+[submodule "rust-ds-flatfs/go-ds-flatfs"]
+	path = rust-ds-flatfs/go-ds-flatfs
+	url = git@github.com:ipfs/go-ds-flatfs.git
