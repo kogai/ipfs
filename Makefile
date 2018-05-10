@@ -14,6 +14,7 @@ install: go/bin/ipfs
 	go get -v github.com/ramya-rao-a/go-outline
 	go get -v github.com/nsf/gocode
 	go get -v golang.org/x/tools/cmd/guru
+	go get -u github.com/derekparker/delve/cmd/dlv
 
 go/bin/ipfs: $(GO_SRC)
 	go get -u -d github.com/ipfs/go-ipfs
