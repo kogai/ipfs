@@ -207,6 +207,7 @@ dependencies = [
  "libp2p-secio 0.1.0",
  "libp2p-swarm 0.1.0",
  "libp2p-tcp-transport 0.1.0",
+ "multihash 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "ring 0.12.1 (git+https://github.com/briansmith/ring?rev=3a14ef619559f7d4b69e2286d49c833409eef34a)",
  "tokio-core 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
  "tokio-io 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",

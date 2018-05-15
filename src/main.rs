@@ -8,14 +8,17 @@ extern crate libp2p_swarm;
 // extern crate tokio_core;
 // extern crate tokio_io;
 extern crate cid;
-use cid::{Cid, Codec, Version};
+extern crate multihash;
+
+// use cid::{Cid, Codec, Version};
 use std::env;
-use std::fs::read_dir;
+// use std::fs::read_dir;
+use multihash::{decode, encode, to_hex, Hash};
 use std::path::{Path, PathBuf};
 
 // use futures::Future;
 // use libp2p_secio::{SecioConfig, SecioKeyPair};
-use libp2p_swarm::{multiaddr::Protocol, AddrComponent, Multiaddr, Transport};
+// use libp2p_swarm::{multiaddr::Protocol, AddrComponent, Multiaddr, Transport};
 // use libp2p_tcp_transport::TcpConfig;
 // use tokio_core::reactor::Core;
 // use tokio_io::io::write_all;
@@ -108,25 +111,39 @@ impl Transport for IpfsTransport {
     }
 }
 */
+fn hex_to_bytes(s: &str) -> Vec<u8> {
+    let mut c = 0;
+    let mut v = Vec::new();
+    while c < s.len() {
+        v.push(u8::from_str_radix(&s[c..c + 2], 16).unwrap());
+        c += 2;
+    }
+    v
+}
 fn main() {
-    let environment = Environment::new();
-    let addr = "/ipfs/QmWm6xANVhca6YNY97bF7TqVtFgEsT2Kperzgwhmvpi88d"
-        .parse::<Multiaddr>()
-        .unwrap();
-    let protocols = addr.iter()
-        .filter_map(|a| match a {
-            AddrComponent::IPFS(addr) => Some(addr),
-            _ => None,
-        })
-        .collect::<Vec<_>>();
-    let h = protocols.first().unwrap();
-    let cid = Cid::new(Codec::DagProtobuf, Version::V1, &h);
-    let data = cid.to_bytes();
-    println!("{:?}", &data);
-    let out = Cid::from(data).unwrap();
+    let hash = encode(Hash::SHA2256, b"my hash").unwrap();
+    let multi = decode(&hash).unwrap();
+    println!("{:?}", to_hex(hash.as_ref()));
+    println!("{:?}", multi.digest);
 
-    println!("{:?}", &environment);
-    println!("{:?}", &out);
+    // let environment = Environment::new();
+    // let addr = "/ipfs/QmWm6xANVhca6YNY97bF7TqVtFgEsT2Kperzgwhmvpi88d"
+    //     .parse::<Multiaddr>()
+    //     .unwrap();
+    // let protocols = addr.iter()
+    //     .filter_map(|a| match a {
+    //         AddrComponent::IPFS(addr) => Some(addr),
+    //         _ => None,
+    //     })
+    //     .collect::<Vec<_>>();
+    // let h = protocols.first().unwrap();
+    // let cid = Cid::new(Codec::DagProtobuf, Version::V1, &h);
+    // let data = cid.to_bytes();
+    // println!("{:?}", &data);
+    // let out = Cid::from(data).unwrap();
+
+    // println!("{:?}", &environment);
+    // println!("{:?}", &out);
 
     // let mut core = Core::new().unwrap();
     // let transport = TcpConfig::new(core.handle()).with_upgrade(SecioConfig {
